@@ -26,4 +26,5 @@ Proyecto backend desarrollado con **FastAPI**, **PostgreSQL** y **Machine Learni
    pip install -r requirements.txt  
 3. Ejecuta el servidor:
    ```bash
-   uvicorn main:app --reload           
+   uvicorn app.main:app --reload
+         

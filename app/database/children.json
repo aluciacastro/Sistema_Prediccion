@@ -1,0 +1,42 @@
+[
+    {
+        "id": 1,
+        "nombre": "Juan Pérez",
+        "edad_meses": 36,
+        "peso": 13.2,
+        "talla": 92.5,
+        "sexo": "M"
+    },
+    {
+        "id": 2,
+        "nombre": "María López",
+        "edad_meses": 24,
+        "peso": 10.5,
+        "talla": 84.0,
+        "sexo": "F"
+    },
+    {
+        "id": 3,
+        "nombre": "Carlos Rodríguez",
+        "edad_meses": 48,
+        "peso": 15.8,
+        "talla": 102.3,
+        "sexo": "M"
+    },
+    {
+        "id": 4,
+        "nombre": "Lucía Fernández",
+        "edad_meses": 18,
+        "peso": 9.2,
+        "talla": 78.5,
+        "sexo": "F"
+    },
+    {
+        "id": 5,
+        "nombre": "Andrés Gómez",
+        "edad_meses": 60,
+        "peso": 18.4,
+        "talla": 108.7,
+        "sexo": "M"
+    }
+]

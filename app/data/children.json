@@ -1,0 +1,18 @@
+[
+    {
+        "id": 6,
+        "nombre": "Andrés Gómez",
+        "edad_meses": 60,
+        "peso": 18.4,
+        "talla": 108.7,
+        "sexo": "M"
+    },
+    {
+        "id": 9,
+        "nombre": "Adriana Castro",
+        "edad_meses": 60,
+        "peso": 18.4,
+        "talla": 108.7,
+        "sexo": "M"
+    }
+]

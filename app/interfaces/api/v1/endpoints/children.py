@@ -1,28 +1,38 @@
-# backend/app/interfaces/api/v1/endpoints/children.py
-from fastapi import APIRouter, Depends, HTTPException, status
+# app/interfaces/api/v1/endpoints/children.py
+from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
-from app.core.dependencies import get_db
-from app.infrastructure.database.repositories.child_repository_impl import ChildRepositoryImpl
-from app.application.dto.child_dto import ChildDTO
-from app.domain.entities.child import Child as ChildEntity
-from app.application.use_cases.register_child import RegisterChildUseCase
+from app.infrastructure.database.connection import get_db_session
+from app.infrastructure.database.models import Child
 
-router = APIRouter()
+router = APIRouter(prefix="/children", tags=["Niños"])
 
-@router.post("/", response_model=ChildDTO, status_code=status.HTTP_201_CREATED)
-def create_child(payload: ChildDTO, db: Session = Depends(get_db)):
-    repo = ChildRepositoryImpl(db)
-    use_case = RegisterChildUseCase(repo)
-    child_entity = ChildEntity(
-        id=None,
-        first_name=payload.first_name,
-        last_name=payload.last_name,
-        birth_date=payload.birth_date.isoformat(),
-        sex=payload.sex,
-        weight_kg=payload.weight_kg,
-        height_cm=payload.height_cm,
-        socioeconomic_level=payload.socioeconomic_level,
-        residence_zone=payload.residence_zone,
+@router.post("/")
+def create_child(
+    nombre: str,
+    edad_meses: int,
+    peso: float,
+    talla: float,
+    sexo: str,
+    db: Session = Depends(get_db_session)
+):
+    new_child = Child(
+        name=nombre,
+        age_months=edad_meses,
+        weight_kg=peso,
+        height_cm=talla,
     )
-    created = use_case.execute(child_entity)
-    return ChildDTO.from_orm(created)
+    db.add(new_child)
+    db.commit()
+    db.refresh(new_child)
+
+    return {
+        "message": f"Niñ@ {nombre} registrado correctamente",
+        "child": {
+            "id": new_child.id,
+            "nombre": nombre,
+            "edad_meses": edad_meses,
+            "peso": peso,
+            "talla": talla,
+            "sexo": sexo
+        }
+    }

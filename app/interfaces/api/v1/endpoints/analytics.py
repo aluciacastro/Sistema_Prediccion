@@ -2,7 +2,9 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 from app.core.dependencies import get_db
-from app.application.use_cases.generate_dashboard_data import GenerateDashboardDataUseCase
+from app.application.uses_cases.generate_dashboard_data import GenerateDashboardDataUseCase
+
+
 
 router = APIRouter()
 
